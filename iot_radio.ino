@@ -1,6 +1,10 @@
 #include <ESP8266WiFi.h>
 #include <Wire.h>
+#include <DNSServer.h>
+#include <ESP8266WebServer.h>
+#include <WiFiManager.h>
 #include<TEA5767Radio.h>
+
 TEA5767Radio radio = TEA5767Radio();
 WiFiClient client;
 WiFiServer server(80);
@@ -8,14 +12,10 @@ WiFiServer server(80);
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  WiFi.begin("Airtel-My WIFI", "samakhomewifi");
-  while (WiFi.status() != WL_CONNECTED)
-  {
-    Serial.print("..");
-    delay(200);
-  }
-  Serial.println();
-  Serial.println("NodeMCU is Connected!");
+  WiFiManager wifiManager;
+  wifiManager.resetSettings();
+  wifiManager.autoConnect("IOT-FM-RADIO");
+  Serial.println("CONNECTED)");
   Serial.println(WiFi.localIP());
   server.begin();
   Wire.begin();
@@ -31,7 +31,7 @@ void loop() {
     request.remove(0, 5);
     request.remove(5, 13);
     float f1 = request.toFloat();
-    Serial.println(f1);
+    //Serial.println(f1);
     radio.setFrequency(f1);
     delay(1);
   }
