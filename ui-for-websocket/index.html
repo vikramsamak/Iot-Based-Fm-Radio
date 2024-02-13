@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebSocket Client</title>
+</head>
+<body>
+  <input type="number" id="frequencyInput" min="88.0" max="120" step="0.01">
+  <button onclick="sendFrequency()" style="margin-top: 10px;">Set Frequency</button>
+
+  <script>
+    // Create a WebSocket object
+    const socket = new WebSocket('ws://192.168.1.103:81');
+
+    // Define a function to handle messages received from the server
+    socket.onmessage = function(event) {
+      console.log('Message from server:', event.data);
+    };
+
+    // Function to send frequency to the server
+    function sendFrequency() {
+      const frequencyInput = document.getElementById('frequencyInput');
+      const frequency = frequencyInput.value;
+
+      // Check if the WebSocket is open before sending
+      if (socket.readyState === WebSocket.OPEN) {
+        // Send the frequency to the server
+        socket.send('SET_FREQUENCY:' + frequency);
+        console.log('Frequency sent to server:', frequency);
+      } else {
+        console.error('WebSocket is not open');
+      }
+    }
+  </script>
+</body>
+</html>
