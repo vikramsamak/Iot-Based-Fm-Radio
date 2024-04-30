@@ -8,8 +8,5 @@ A simple fm radio made with Node MCU and TEA5767(Radio Moule).
 - Easy to Use UI
 - Portable
 
-## Basic Block Diagram
-
-![Block Diagram](./Block%20diagram.png)
 
 
