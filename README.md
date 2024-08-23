@@ -7,6 +7,3 @@ A simple fm radio made with Node MCU and TEA5767(Radio Moule).
 
 - Easy to Use UI
 - Portable
-
-
-
