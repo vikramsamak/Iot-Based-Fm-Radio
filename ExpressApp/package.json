@@ -2,6 +2,8 @@
   "name": "iot-fm-radio-ui",
   "private": true,
   "version": "0.0.0",
+  "author": "Vikram Samak",
+  "description": "Electron based desktop app for IOT based FM Radio",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && electron-builder",
